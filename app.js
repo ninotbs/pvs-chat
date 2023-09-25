@@ -14,8 +14,9 @@ if (env !== 'production') {
       liveReloadServer.refresh('/')
     }, 100)
   })
-  app.use(connectLiveReload)
+  app.use(connectLiveReload())
 }
+
 
 (async function () {
   const serverPort = process.env.PORT || 3000
