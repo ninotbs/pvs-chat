@@ -2,7 +2,7 @@ const express = require('express')
 const http = require('http')
 const livereload = require('livereload')
 const connectLiveReload = require('connect-livereload')
-// const { initializeWebsocketServer } = require('./server')
+const { initializeWebsocketServer } = require('./server/websocketserver')
 
 const app = express()
 const server = http.createServer(app)
@@ -18,12 +18,22 @@ if (env !== 'production') {
   app.use(connectLiveReload())
 }
 
+//app.use(express.static('client'))
+
+/*
+app.get('/', (req, res, next) => {
+  res.sendFile(__dirname + '/client/index.html')
+})
+*/
 
 (async function () {
+  await initializeWebsocketServer(server)
+
   const serverPort = process.env.PORT || 3000
   server.listen(serverPort, () => {
-    console.log(
+    console.log
+    (
       `Server started on port ${serverPort} as '${env}' Environment`
     )
   })
-})
+})()
