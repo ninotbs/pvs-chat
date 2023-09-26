@@ -31,3 +31,5 @@ copado_root
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+nino-pvs-teko2-kubeconfig.yaml
