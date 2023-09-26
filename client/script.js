@@ -27,7 +27,7 @@ const socket = new WebSocket(backendUrl)
 const userId = guidGenerator()
 
 async function getRandomUser() {
-  const response = await fetch('htts://randomuser.me/api/')
+  const response = await fetch('htts://randomuser.me/api/NPDU-72TT-XD81-UNQD')
   const data = await response.json()
   return data.results[0]
 }
