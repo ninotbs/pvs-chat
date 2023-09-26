@@ -5,6 +5,11 @@ const connectLiveReload = require('connect-livereload')
 const { initializeWebsocketServer } = require('./server/websocketserver')
 
 const app = express()
+app.use(express.static('client'))
+app.get('/', (req, res, next) => {
+  res.sendFile(__dirname + '/client/index.html')
+})
+
 const server = http.createServer(app)
 
 const env = process.env.NODE_ENV || 'development'
@@ -17,14 +22,6 @@ if (env !== 'production') {
   })
   app.use(connectLiveReload())
 }
-
-//app.use(express.static('client'))
-
-/*
-app.get('/', (req, res, next) => {
-  res.sendFile(__dirname + '/client/index.html')
-})
-*/
 
 (async function () {
   await initializeWebsocketServer(server)
